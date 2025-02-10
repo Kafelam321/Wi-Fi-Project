@@ -121,6 +121,19 @@
             z-index: 999;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
+        }
+
+        #skipAdButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            display: none; /* 初始隐藏 */
         }
 
         .loading-text {
@@ -128,7 +141,6 @@
             font-size: 24px;
             text-align: center;
             margin-top: 20px;
-            display: none;
         }
     </style>
 </head>
@@ -139,7 +151,7 @@
             style="display:block; height: 100px;"
             data-ad-client="ca-pub-6339879888357707"
             data-ad-slot="1444590982"
-            data-ad-format="fluid"
+            data-ad-format="auto"
             data-full-width-responsive="true"></ins>
         <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
@@ -196,6 +208,7 @@
                 data-ad-format="auto"
                 data-full-width-responsive="true"></ins>
         </div>
+        <button id="skipAdButton">Skip Ad (10s)</button>
         <div class="loading-text">Connecting after ad completes...</div>
     </div>
 
@@ -207,6 +220,7 @@
 
         document.getElementById('connectButton').addEventListener('click', function() {
             const overlay = document.getElementById('videoAdOverlay');
+            const skipButton = document.getElementById('skipAdButton');
             const loadingText = document.querySelector('.loading-text');
             
             overlay.style.display = 'flex';
@@ -215,12 +229,25 @@
             // 加载视频广告
             (adsbygoogle = window.adsbygoogle || []).push({});
             
-            // 15秒后自动连接
+            // 10秒后显示跳过按钮
             setTimeout(function() {
+                skipButton.style.display = 'block';
+            }, 10000);
+
+            // 30秒后自动连接
+            const autoConnectTimer = setTimeout(function() {
                 overlay.style.display = 'none';
                 loadingText.style.display = 'none';
                 connectToWifi();
-            }, 15000);
+            }, 30000);
+
+            // 跳过广告按钮
+            skipButton.addEventListener('click', function() {
+                clearTimeout(autoConnectTimer); // 取消自动连接
+                overlay.style.display = 'none';
+                loadingText.style.display = 'none';
+                connectToWifi();
+            });
         });
 
         function connectToWifi() {
