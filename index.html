@@ -3,41 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free WiFi Connection</title>
-    <!-- Google AdSense 广告脚本 -->
+    <title>MyHome WiFi Connect</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6339879888357707"
         crossorigin="anonymous"></script>
     <style>
+        :root {
+            --primary-color: #2F80ED;
+            --background-color: #f0f5ff;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             margin: 0;
-            padding: 0;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            background: var(--background-color);
+            position: relative;
         }
-        .ad-container {
-            margin: 10px auto;
+
+        .wifi-header {
             text-align: center;
+            padding: 40px 20px;
+            background: var(--primary-color);
+            color: white;
+            clip-path: ellipse(130% 100% at 50% 0%);
         }
+
+        .wifi-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .wifi-icon::before {
+            content: '';
+            position: absolute;
+            border: 4px solid white;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .wifi-icon .signal-1 { width: 100%; height: 100%; animation-delay: 0.2s; }
+        .wifi-icon .signal-2 { width: 70%; height: 70%; animation-delay: 0.4s; }
+        .wifi-icon .signal-3 { width: 40%; height: 40%; animation-delay: 0.6s; }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            100% { opacity: 0; transform: scale(1.5); }
+        }
+
+        .ad-container {
+            margin: 20px auto;
+            max-width: 728px;
+            width: 90%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
         .content {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
+            padding: 30px 20px;
         }
+
         #connectButton {
-            padding: 15px 30px;
-            font-size: 18px;
-            background-color: #007bff;
+            padding: 18px 45px;
+            font-size: 20px;
+            background: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 30px;
             cursor: pointer;
-            margin: 20px 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+            margin: 30px 0;
         }
+
+        #connectButton::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255,255,255,0.3),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        #connectButton:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(47,128,237,0.3);
+        }
+
+        #connectButton:hover::before {
+            left: 100%;
+        }
+
         #videoAdOverlay {
             display: none;
             position: fixed;
@@ -45,16 +117,18 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.95);
             z-index: 999;
+            justify-content: center;
+            align-items: center;
         }
-        #videoAdContainer {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin: 20px auto;
-            top: 50%;
-            transform: translateY(-50%);
+
+        .loading-text {
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
         }
     </style>
 </head>
@@ -72,6 +146,16 @@
         </script>
     </div>
 
+    <div class="wifi-header">
+        <div class="wifi-icon">
+            <div class="signal-1"></div>
+            <div class="signal-2"></div>
+            <div class="signal-3"></div>
+        </div>
+        <h1>Welcome to MyHome WiFi</h1>
+        <p>Click the button below to connect</p>
+    </div>
+
     <div class="content">
         <!-- 中间广告 -->
         <div class="ad-container">
@@ -86,7 +170,7 @@
             </script>
         </div>
 
-        <button id="connectButton">FREE WIFI</button>
+        <button id="connectButton">CONNECT TO WIFI</button>
     </div>
 
     <!-- 底部广告 -->
@@ -104,52 +188,66 @@
 
     <!-- 视频广告弹窗 -->
     <div id="videoAdOverlay">
-        <div id="videoAdContainer">
+        <div style="width: 90%; max-width: 800px; margin: auto;">
             <ins class="adsbygoogle"
                 style="display:block"
                 data-ad-client="ca-pub-6339879888357707"
                 data-ad-slot="2454458319"
                 data-ad-format="auto"
                 data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
         </div>
+        <div class="loading-text">Connecting after ad completes...</div>
     </div>
 
     <script>
+        // 自动加载初始广告
+        window.onload = function() {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        }
+
         document.getElementById('connectButton').addEventListener('click', function() {
-            // 显示视频广告
             const overlay = document.getElementById('videoAdOverlay');
-            overlay.style.display = 'block';
+            const loadingText = document.querySelector('.loading-text');
+            
+            overlay.style.display = 'flex';
+            loadingText.style.display = 'block';
             
             // 加载视频广告
             (adsbygoogle = window.adsbygoogle || []).push({});
             
-            // 设置15秒后自动连接（实际应使用广告回调）
+            // 15秒后自动连接
             setTimeout(function() {
                 overlay.style.display = 'none';
+                loadingText.style.display = 'none';
                 connectToWifi();
-            }, 15000); // 15秒广告时间
+            }, 15000);
         });
 
         function connectToWifi() {
-            // 此处应替换为实际的Wi-Fi连接逻辑
-            // 由于浏览器限制，这里使用模拟实现
-            alert('Connecting to WiFi...');
-            window.location.href = 'wifi://connect?ssid=MyHome&password=Cheong5180';
-            
-            // 如果自动跳转失败，显示手动连接指引
-            setTimeout(function() {
-                if (!navigator.onLine) {
-                    alert('Please check your WiFi connection manually');
-                }
-            }, 3000);
+            // 尝试自动连接
+            try {
+                window.location.href = 'wifi://ssid=MyHome&password=Cheong5180';
+                setTimeout(() => {
+                    if (!navigator.onLine) {
+                        showManualInstructions();
+                    }
+                }, 3000);
+            } catch (e) {
+                showManualInstructions();
+            }
         }
 
-        // 自动加载初始广告
-        window.onload = function() {
-            (adsbygoogle = window.adsbygoogle || []).push({});
+        function showManualInstructions() {
+            const instruction = confirm(`自动连接失败，请手动操作：
+1. 打开手机设置
+2. 选择 WiFi 网络：MyHome
+3. 输入密码：Cheong5180
+
+点击确定查看网络状态`);
+            
+            if (instruction) {
+                window.location.reload();
+            }
         }
     </script>
 </body>
