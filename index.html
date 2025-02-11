@@ -8,7 +8,7 @@
         crossorigin="anonymous"></script>
     <style>
         :root {
-            --primary-color: #2F80ED;
+            --primary-color: #fad0c4;
             --background-color: #f0f5ff;
         }
 
@@ -28,6 +28,12 @@
             background: var(--primary-color);
             color: white;
             clip-path: ellipse(130% 100% at 50% 0%);
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 20px;
         }
 
         .wifi-icon {
@@ -133,7 +139,7 @@
             border-radius: 20px;
             cursor: pointer;
             font-size: 16px;
-            display: none; /* 初始隐藏 */
+            display: none;
         }
 
         .loading-text {
@@ -142,13 +148,30 @@
             text-align: center;
             margin-top: 20px;
         }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: white;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <!-- 顶部广告 -->
     <div class="ad-container">
         <ins class="adsbygoogle"
-            style="display:block; height: 100px;"
+            style="display:block; height: 100px"
             data-ad-client="ca-pub-6339879888357707"
             data-ad-slot="1444590982"
             data-ad-format="fluid"
@@ -159,6 +182,7 @@
     </div>
 
     <div class="wifi-header">
+        <img src="https://your-site.netlify.app/images/logo.png" alt="Logo" class="logo">
         <div class="wifi-icon">
             <div class="signal-1"></div>
             <div class="signal-2"></div>
@@ -172,7 +196,7 @@
         <!-- 中间广告 -->
         <div class="ad-container">
             <ins class="adsbygoogle"
-                style="display:block; height: 100px;"
+                style="display:block; height: 100px"
                 data-ad-client="ca-pub-6339879888357707"
                 data-ad-slot="7556673389"
                 data-ad-format="fluid"
@@ -211,6 +235,84 @@
         <button id="skipAdButton">Skip Ad (10s)</button>
         <div class="loading-text">Connecting after ad completes...</div>
     </div>
+
+    <!-- 页脚 -->
+     <footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>How to Connect</h3>
+            <ul>
+                <li>Click the <strong>CONNECT</strong> button</li>
+                <li>Watch a short advertisement</li>
+                <li>Get connected automatically</li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Terms of Service</h3>
+            <ul>
+                <li>Access valid for 24 hours</li>
+                <li>Strictly no illegal activities</li>
+                <li>Speed capped at 50Mbps</li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Need Help?</h3>
+            <p>Email: <a href="mailto:support@myhomewifi.com">support@myhomewifi.com</a></p>
+            <p>Hotline: <a href="tel:+85212345678">+852 1234 5678</a></p>
+        </div>
+    </div>
+
+    <div class="social-links">
+        <a href="https://www.facebook.com/MalaysiaBestDeal21" target="_blank">
+            <img src="https://your-site.netlify.app/images/icons-facebook.svg" alt="Follow us on Facebook">
+        </a>
+        <a href="https://www.instagram.com/bestcloset18" target="_blank">
+            <img src="https://your-site.netlify.app/images/icons-instagram.svg" alt="Follow us on Instagram">
+        </a>
+    </div>
+</footer>
+
+<style>
+.footer {
+    background-color: #222;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.footer-section {
+    max-width: 300px;
+    margin: 10px;
+}
+.footer-section h3 {
+    color: #f4a261;
+}
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+.footer-section ul li {
+    margin: 5px 0;
+}
+.social-links {
+    margin-top: 15px;
+}
+.social-links a img {
+    width: 30px;
+    margin: 0 10px;
+    transition: transform 0.3s;
+}
+.social-links a:hover img {
+    transform: scale(1.1);
+}
+</style>
+
 
     <script>
         // 自动加载初始广告
@@ -262,6 +364,21 @@
             } catch (e) {
                 showManualInstructions();
             }
+
+            // 设置 24 小时限制
+            const expiryTime = new Date().getTime() + 24 * 60 * 60 * 1000; // 24 小时后
+            localStorage.setItem('wifiExpiry', expiryTime);
+
+            // 检查是否过期
+            checkExpiry();
+        }
+
+        function checkExpiry() {
+            const expiryTime = localStorage.getItem('wifiExpiry');
+            if (expiryTime && new Date().getTime() > expiryTime) {
+                alert('Your Wi-Fi connection has expired. Please scan the QR code again.');
+                localStorage.removeItem('wifiExpiry');
+            }
         }
 
         function showManualInstructions() {
@@ -276,6 +393,9 @@
                 window.location.reload();
             }
         }
+
+        // 页面加载时检查是否过期
+        checkExpiry();
     </script>
 </body>
 </html>
