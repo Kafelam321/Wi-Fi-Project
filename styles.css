@@ -1,0 +1,37 @@
+/* 让整个页面居中 */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+/* 图标外的白色圆圈 */
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 60px;  /* 圆圈的大小 */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;  /* 白色背景 */
+    border-radius: 50%;  /* 变成圆形 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);  /* 轻微阴影 */
+    transition: transform 0.2s ease-in-out;
+}
+
+/* 让图标适应圆圈 */
+.social-icon img {
+    width: 50%;
+    height: auto;
+}
+
+/* 鼠标悬停时稍微放大 */
+.social-icon:hover {
+    transform: scale(1.1);
+}
