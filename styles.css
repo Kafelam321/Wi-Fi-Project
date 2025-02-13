@@ -217,7 +217,7 @@ body {
     clip-path: ellipse(130% 100% at 50% 0%);
     border-radius: 12px;
     margin: 10px;
-    background-image: url("images/Background.png");
+    background-image: url("https://raw.githubusercontent.com/Kafelam321/Wi-Fi-Project/main/image/Background.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -272,6 +272,10 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 30px 20px;
+}
+
+.content p {
+    color: brown;
 }
 
 #connectButton {
