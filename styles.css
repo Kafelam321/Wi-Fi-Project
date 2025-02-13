@@ -1,7 +1,405 @@
-/* 图标外的白色圆圈 */
+:root {
+    --primary-color: #fad0c4;
+    --background-color: #f0f5ff;
+}
+
+header {
+    background-color: var(--primary-color);
+    height: 80px;
+    width: 100%;
+    position: relative;
+}
+
+.header-logo {
+    width: 50px;
+    height: 50px;
+    margin: 15px;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+header a:hover {
+text-decoration: underline;
+}
+
+header ul {
+    position:absolute;
+    right: 5vw;
+    top: 0;
+    line-height: 50px;
+}
+
+header li {
+    display: inline;
+    margin-right: 4vw; 
+}
+
+h1 {
+    color: #f48996;
+    position: relative;
+    font-size: 40px;
+}
+
+h2 {
+    color: #f48996;
+    position: relative;
+    font-size: 30px;
+}
+
+p {
+    color: white;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.product-item {
+    background: var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 15px;
+    max-width: 350px;
+    text-align: center;
+}
+.product-item img {
+    width: 100%;
+    border-radius: 10px;
+}
+.product-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+.product-desc {
+    font-size: 14px;
+    color: white;
+}
+
+.offer {
+    text-align: center;
+    background: linear-gradient(135deg, #ff6b6b, #ff9f43);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.offer h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: red;
+}
+
+.offer p {
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 适配小屏幕 */
+@media (max-width: 480px) {
+    .offer {
+        padding: 15px;
+    }
+
+    .offer h2 {
+        font-size: 20px;
+    }
+
+    .offer p {
+        font-size: 16px;
+    }
+}
+
+.product-review {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: var(--primary-color);
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.product-review h2 {
+    text-align: center;
+    position: center;
+}
+
+/* 设置图片显示方式，确保在小屏幕上排成两列或一列 */
+.product-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.product-images img {
+    width: 48%;  /* 两张图片时占用48%的宽度，留白空间 */
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* 单张图片的宽度 */
+@media (max-width: 600px) {
+    .product-images img {
+        width: 100%;  /* 小屏幕时单张图片占满宽度 */
+    }
+}
+
+/* 设置评论部分 */
+.review {
+    margin-top: 10px;
+    text-align: left;
+}
+
+/* 星星评分样式 */
+.review p:first-child {
+    font-size: 1.2rem;
+    color: #FFD700;  /* 星星颜色 */
+}
+
+.store-info {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+}
+
+/* 店家信息的文本样式 */
+.store-info p {
+    font-size: 0.9rem;
+    margin: 5px 0;
+    text-align: left;
+    color: black;
+}
+
+/* 强调的店名、电话等部分 */
+.store-info strong {
+    font-weight: bold;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--background-color);
+    position: relative;
+}
+
+.wifi-header {
+    height: 240px;
+    width: 100%;
+    text-align: center;
+    padding: 40px 20px;
+    color: #f48996;
+    clip-path: ellipse(130% 100% at 50% 0%);
+    border-radius: 12px;
+    margin: 10px;
+    background-image: url("images/Background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.wifi-header p {
+    color: brown;
+}
+
+.logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 0px;
+}
+
+.wifi-icon {
+    width: auto;
+    height: 10px;
+    margin: 0 auto 30px;
+    position: relative;
+}
+
+.wifi-icon::before {
+    content: '';
+    position: absolute;
+    border: 4px solid #f4a261;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.wifi-icon .signal-1 { width: 100%; height: 100%; animation-delay: 0.2s; }
+.wifi-icon .signal-2 { width: 100%; height: 100%; animation-delay: 0.4s; }
+.wifi-icon .signal-3 { width: 100%; height: 100%; animation-delay: 0.6s; }
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    100% { opacity: 0; transform: scale(1.5); }
+}
+
+.ad-container {
+    margin: 20px auto;
+    max-width: 728px;
+    width: 90%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+}
+
+#connectButton {
+    padding: 18px 45px;
+    font-size: 20px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+    margin: 30px 0;
+}
+
+#connectButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.3),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+#connectButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(47,128,237,0.3);
+}
+
+#connectButton:hover::before {
+    left: 100%;
+}
+
+#videoAdOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#skipAdButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #ff4757;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    display: none;
+}
+
+.loading-text {
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: white;
+    font-size: 14px;
+}
+
+.footer a {
+    color: #f48996;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    background-color: #fad0c4;
+    color: #f4a261;
+    padding: 20px;
+    text-align: center;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.footer-section {
+    max-width: 300px;
+    margin: 10px;
+}
+.footer-section h3 {
+    color: black;
+}
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+.footer-section ul li {
+    margin: 5px 0;
+}
 .social-links {
+    margin-top: 15px;
     display: flex;
     gap: 15px;
+}
+.social-links a img {
+    width: 30px;
+    margin: 0 10px;
+    transition: transform 0.3s;
+}
+.social-links a:hover img {
+    transform: scale(1.1);
 }
 
 .social-icon {
