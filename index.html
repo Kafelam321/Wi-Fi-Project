@@ -3,176 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyHome WiFi Connect</title>
+    <title>Bestcloset WiFi Connect</title>
     <link rel="stylesheet" href="styles.css">  <!-- 连接 CSS 文件 -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6339879888357707"
         crossorigin="anonymous"></script>
-    <style>
-        :root {
-            --primary-color: #fad0c4;
-            --background-color: #f0f5ff;
-        }
-
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background: var(--background-color);
-            position: relative;
-        }
-
-        .wifi-header {
-            text-align: center;
-            padding: 40px 20px;
-            background: var(--primary-color);
-            color: white;
-            clip-path: ellipse(130% 100% at 50% 0%);
-        }
-
-        .logo {
-            width: 100px;
-            height: auto;
-            margin-bottom: 20px;
-        }
-
-        .wifi-icon {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 30px;
-            position: relative;
-        }
-
-        .wifi-icon::before {
-            content: '';
-            position: absolute;
-            border: 4px solid white;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        .wifi-icon .signal-1 { width: 100%; height: 100%; animation-delay: 0.2s; }
-        .wifi-icon .signal-2 { width: 70%; height: 70%; animation-delay: 0.4s; }
-        .wifi-icon .signal-3 { width: 40%; height: 40%; animation-delay: 0.6s; }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            100% { opacity: 0; transform: scale(1.5); }
-        }
-
-        .ad-container {
-            margin: 20px auto;
-            max-width: 728px;
-            width: 90%;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px 20px;
-        }
-
-        #connectButton {
-            padding: 18px 45px;
-            font-size: 20px;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            position: relative;
-            overflow: hidden;
-            margin: 30px 0;
-        }
-
-        #connectButton::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                120deg,
-                transparent,
-                rgba(255,255,255,0.3),
-                transparent
-            );
-            transition: 0.5s;
-        }
-
-        #connectButton:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(47,128,237,0.3);
-        }
-
-        #connectButton:hover::before {
-            left: 100%;
-        }
-
-        #videoAdOverlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 999;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        #skipAdButton {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background: #ff4757;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 16px;
-            display: none;
-        }
-
-        .loading-text {
-            color: white;
-            font-size: 24px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background: #333;
-            color: white;
-            font-size: 14px;
-        }
-
-        .footer a {
-            color: #f48996;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
+    <header>
+        <img src="https://raw.githubusercontent.com/Kafelam321/Wi-Fi-Project/main/image/logo.png" alt="Bestcloset18" class="header-logo">
+        <ul>
+            <li><a href="https://g.co/kgs/9BWYbXW">Website</a></li>
+            <li><a href="https://maps.app.goo.gl/FD5pLCpYpZpZoD6W8">Locate us</a></li>
+            <li><a href="https://g.co/kgs/9BWYbXW">Google Review</a></li>
+        </ul>
+    </header>
+
     <!-- 顶部广告 -->
     <div class="ad-container">
         <ins class="adsbygoogle"
-            style="display:block; height: 100px"
+            style="display:block; height: 100px; width: auto;"
             data-ad-client="ca-pub-6339879888357707"
             data-ad-slot="1444590982"
             data-ad-format="fluid"
@@ -182,22 +31,21 @@
         </script>
     </div>
 
-    <div class="wifi-header">
-        <img src="https://raw.githubusercontent.com/Kafelam321/Wi-Fi-Project/main/image/logo.png" alt="Logo" class="logo">
+    <section class="wifi-header">
         <div class="wifi-icon">
             <div class="signal-1"></div>
             <div class="signal-2"></div>
             <div class="signal-3"></div>
         </div>
-        <h1>Welcome to MyHome WiFi</h1>
+        <h1>Welcome to Bestcloset WiFi</h1>
         <p>Click the button below to connect</p>
-    </div>
+    </section>
 
     <div class="content">
         <!-- 中间广告 -->
         <div class="ad-container">
             <ins class="adsbygoogle"
-                style="display:block; height: 100px"
+                style="display:block; height: 100px; width: auto;"
                 data-ad-client="ca-pub-6339879888357707"
                 data-ad-slot="7556673389"
                 data-ad-format="fluid"
@@ -206,10 +54,65 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
+    </div>
 
+    <section class="product">
+        <h2>热门商品</h2>
+        <div class="product-item">
+            <img src="images/p1.png" alt="休闲高腰工装半身裙">
+            <h2 class="product-title">休闲高腰工装半身裙</h2>
+            <p class="product-desc">采用工装风设计，高腰剪裁搭配大口袋设计<br>适合搭配短上衣或修身背心，展现休闲街头风格</p>
+        </div>
+
+        <div class="product-item">
+            <img src="images/p2.png" alt="修身抽绳包臀裙">
+            <h2 class="product-title">修身抽绳包臀裙</h2>
+            <p class="product-desc">采用弹力针织面料，贴合身形展现修长腿部线条<br>搭配漏肩上衣，日常穿搭与约会的理想选择</p>
+        </div>
+
+        <div class="product-item">
+            <img src="images/p3.png" alt="性感镂空绑带露背连衣裙">
+            <h2 class="product-title">性感镂空绑带露背连衣裙</h2>
+            <p class="product-desc">采用修身剪裁，展现曼妙身材<br>背部交叉绑带设计增添性感魅力，是展现优雅气质的完美选择</p>
+        </div>
+    </section>
+
+    <section class="offer">
+            <h2>优惠热卖中</h2>
+            <p>全场周末买一送一<br>全场疯抢，错过等明年！🔥</p>
+    </section>
+        
+    <div class="content">
+        <h2>欢迎使用我们的免费 Wi-Fi</h2>
+        <p>请观看以下广告后，即可连接到 Wi-Fi。</p>
+  
         <button id="connectButton">CONNECT TO WIFI</button>
     </div>
 
+    <section class="product-review">
+        <h2>🌟 顾客评价</h2>
+            <div class="product-images">
+                <img src="https://lh3.googleusercontent.com/geougc-cs/AIHozJIU-8vEGDUwFRlYc25ypNmIZ-9m6zx8pVV2nB_ocPzk0NuJAytNhblp45Lq8Vq9vnojIU165b9z7oJlSnmFZ8Hnl7xpwOUcUzZjpwy24CwXl0oAXtBKoh_iWk6ZR1kaqMPAgBT1=s2880-w2880-h1556" alt="白色工装半身裙">
+                <img src="https://lh3.googleusercontent.com/geougc-cs/AIHozJKXJCh7VSr_0xQq8T6RkNvITDzLAdCyi62TuJz3jPXNg1sg0bS_Ws8ENYpzsevpNFrb4ox-TEy8-uLEATG-2vVdR1LArMCpn54mqYqzGBq4Pe-7Cd8_WKudrWzpyCA9X9cEP01rTQ=s2880-w2880-h1556" alt="白色高腰短裙">
+            </div>
+            <div class="review">
+                <p>⭐⭐⭐⭐⭐</p>
+                <p>“质量超好！上身效果很棒，尺码刚刚好，物流也很快，下次还会再来！”</p>
+            </div>
+            <div class="product-images">
+            </div>
+            <div class="review">
+                <p>⭐⭐⭐⭐⭐</p>
+                <p>“裙子版型超正，穿上显腿长！面料很舒服，性价比超高，推荐购买！”</p>
+            </div>
+            <div class="product-images">
+            </div>
+            <div class="review">
+                <p>⭐⭐⭐⭐⭐</p>
+                <p>“真的太惊喜了！颜色和图片一样，没有色差，尺码也很准，客服态度超级棒！”</p>
+            </div>
+     </section>
+    
     <!-- 底部广告 -->
     <div class="ad-container">
         <ins class="adsbygoogle"
@@ -222,6 +125,13 @@
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     </div>
+
+    <section class="store-info">
+        <p><strong>Store：</strong>Best Closet</p>
+        <p><strong>Phone：</strong>+60 4958 345</p>
+        <p><strong>Business Hours：</strong>10:00AM - 08:00PM, Daily</p>
+        <p><strong>Address ：</strong>Imperia Residence, Jalan Laksamana 1, 79100 Iskandar Puteri, Johor.</p>
+    </section>
 
     <!-- 视频广告弹窗 -->
     <div id="videoAdOverlay">
@@ -275,46 +185,6 @@
         </a>
     </div>
 </footer>
-
-<style>
-.footer {
-    background-color: #fad0c4;
-    color: #f4a261;
-    padding: 20px;
-    text-align: center;
-}
-.footer-content {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-.footer-section {
-    max-width: 300px;
-    margin: 10px;
-}
-.footer-section h3 {
-    color: black;
-}
-.footer-section ul {
-    list-style: none;
-    padding: 0;
-}
-.footer-section ul li {
-    margin: 5px 0;
-}
-.social-links {
-    margin-top: 15px;
-}
-.social-links a img {
-    width: 30px;
-    margin: 0 10px;
-    transition: transform 0.3s;
-}
-.social-links a:hover img {
-    transform: scale(1.1);
-}
-</style>
-
 
     <script>
         // 自动加载初始广告
